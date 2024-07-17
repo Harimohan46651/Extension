@@ -29,15 +29,26 @@ function activate(context) {
 		// Display a message box to the user
 		vscode.window.showInformationMessage('hi everyone from Harimohan!');
 	});
-	const valueReadFromJson = vscode.commands.registerCommand('read.readValue', function () {
+	const valueReadFromJson = vscode.commands.registerCommand('read.readJsonValue', function () {
 		// The code you place here will be executed every time your command is executed
 		const jsonValue = require('./readJSON.js');
 
 		// Display a message box to the user
-		vscode.window.showInformationMessage('hi everyone from Harimohan!' + jsonValue);
+		vscode.window.showInformationMessage(`hi everyone. Json Value is: ${jsonValue}`);
+	});
+	const valueReadFromJsonFile = vscode.commands.registerCommand('read.readJsonValueFromFile', function () {
+		// The code you place here will be executed every time your command is executed
+		const path = require('path')
+		const filePath = path.join(__dirname, 'exampleJson.json')
+		const { readJsonFromFile } = require('./readJsonFile.js');
+		const jsonData = readJsonFromFile(filePath);
+		console.log(`Json Data From File :${JSON.stringify(jsonData)}`);
+
+		// Display a message box to the user
+		vscode.window.showInformationMessage(`Json Value from file is: ${JSON.stringify(jsonData)}`);
 	});
 
-	context.subscriptions.push(disposable, disposable1, valueReadFromJson);
+	context.subscriptions.push(disposable, disposable1, valueReadFromJson,valueReadFromJsonFile);
 }
 
 // This method is called when your extension is deactivated
