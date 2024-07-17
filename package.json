@@ -21,8 +21,12 @@
       "title": "hi"
     },
     {
-      "command": "read.readValue",
-      "title": "read"
+      "command": "read.readJsonValue",
+      "title": "readJsonValue"
+    },
+    {
+      "command": "read.readJsonValueFromFile",
+      "title": "readJsonValueFromFile"
     }]
   },
   "scripts": {
